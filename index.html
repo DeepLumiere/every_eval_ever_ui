@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Evaluation | Every Eval Ever</title>
+    <meta name="description"
+        content="Submit your AI evaluation results to the Every Eval Ever dataset using our standardized schema form.">
+    <meta property="og:title" content="Submit Evaluation | Every Eval Ever">
+    <meta property="og:description"
+        content="A guided form to submit AI evaluation results in the standardized EEE schema format.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="assets/logo-square.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () {
+            var saved = localStorage.getItem('eee-theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-left">
+                <a href="https://evalevalai.com" target="_blank" class="nav-logo-link">
+                    <img src="assets/logo-square.png" alt="EvalEval Logo" class="nav-logo">
+                </a>
+                <a href="#" class="nav-title">Every Eval Ever</a>
+                <span class="nav-badge">v0.2.2</span>
+            </div>
+            <div class="nav-right">
+                <!-- <a href="https://huggingface.co/datasets/evaleval/EEE_datastore" target="_blank" class="nav-link">
+                    <img src="https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo-pirate.svg"
+                        alt="HuggingFace" class="hf-icon">
+                    <span class="nav-link-text">Dataset</span>
+                </a> -->
+                <a href="https://github.com/evaleval/every_eval_ever" target="_blank" class="nav-btn-dark">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    <span class="nav-link-text">GitHub</span>
+                </a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+                    <svg class="icon-moon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
+                    </svg>
+                    <svg class="icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5" />
+                        <path stroke-linecap="round"
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-inner">
+            <!-- <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>Submit to Every Eval Ever</span>
+        </div> -->
+            <h1>One form for<br><span class="gradient-text">Every Eval Ever.</span></h1>
+            <p class="hero-subtitle">Fill in the details below and download a schema-valid <code>.json</code> file ready
+                to submit to the <a href="https://huggingface.co/datasets/evaleval/EEE_datastore" target="_blank">EEE
+                    dataset</a>. No backend, no account needed.</p>
+            <div class="hero-actions">
+                <a href="#form-wizard" class="btn-primary">
+                    Start Submitting
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </a>
+                <a href="https://evalevalai.com/projects/every-eval-ever/" target="_blank" class="btn-secondary">
+                    Learn More
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-banner">
+                <img src="assets/site-banner.png" alt="Every Eval Ever illustration" class="hero-banner-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Wizard -->
+    <section id="form-wizard" class="wizard-section">
+        <div class="wizard-container">
+            <!-- Progress Bar -->
+            <div class="progress-wrapper">
+                <div class="progress-steps">
+                    <div class="step-item active" data-step="1" id="step-indicator-1">
+                        <div class="step-circle">1</div>
+                        <span class="step-label">Metadata</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item" data-step="2" id="step-indicator-2">
+                        <div class="step-circle">2</div>
+                        <span class="step-label">Source</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item" data-step="3" id="step-indicator-3">
+                        <div class="step-circle">3</div>
+                        <span class="step-label">Model</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item" data-step="4" id="step-indicator-4">
+                        <div class="step-circle">4</div>
+                        <span class="step-label">Eval Library</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item" data-step="5" id="step-indicator-5">
+                        <div class="step-circle">5</div>
+                        <span class="step-label">Results</span>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item" data-step="6" id="step-indicator-6">
+                        <div class="step-circle">6</div>
+                        <span class="step-label">Review</span>
+                    </div>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Step Panels -->
+            <div class="wizard-body">
+
+                <!-- STEP 1: Metadata -->
+                <div class="step-panel active" id="panel-1">
+                    <div class="panel-header">
+                        <div class="panel-icon icon-blue">
+                            <img src="assets/document.svg" alt="" class="panel-icon-img">
+                        </div>
+                        <div>
+                            <h2>Evaluation Metadata</h2>
+                            <p>Core identifiers for this evaluation run.</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="schema_version">Schema Version <span class="required">*</span></label>
+                            <input type="text" id="schema_version" value="0.2.2" readonly class="input-readonly"
+                                placeholder="0.2.2">
+                            <span class="field-hint">Fixed at 0.2.2 — the current schema version.</span>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="evaluation_id">Evaluation ID <span class="required">*</span></label>
+                            <input type="text" id="evaluation_id"
+                                placeholder="e.g. lm-eval/meta-llama/Llama-3.1-8B-Instruct/1764204739"
+                                class="form-input" oninput="clearError(this)" onblur="validateFilled(this)">
+                            <span class="field-hint">Recommended format:
+                                <code>eval_name/model_id/retrieved_timestamp</code></span>
+                            <span class="error-msg" id="err-evaluation_id"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="evaluation_timestamp">Evaluation Timestamp</label>
+                            <div class="ts-field-wrap">
+                                <input type="text" id="evaluation_timestamp"
+                                    placeholder="e.g. 2025-01-15T10:30:00Z or 1764204739.5" class="form-input"
+                                    oninput="validateTimestamp(this)" onblur="validateTimestamp(this)">
+                                <div class="ts-btn-group">
+                                    <button type="button" class="ts-btn" title="Insert current time as Unix epoch"
+                                        onclick="setTimestampNow('evaluation_timestamp','unix')">Now (Unix)</button>
+                                    <button type="button" class="ts-btn" title="Insert current time as ISO 8601"
+                                        onclick="setTimestampNow('evaluation_timestamp','iso')">Now (ISO)</button>
+                                </div>
+                            </div>
+                            <span class="field-hint">When the evaluation was run — Unix epoch (e.g.
+                                <code>1764204739.5</code>) or ISO 8601 (e.g. <code>2025-01-15T10:30:00Z</code>).</span>
+                            <span class="error-msg" id="err-evaluation_timestamp"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="retrieved_timestamp">Retrieved Timestamp <span class="required">*</span></label>
+                            <div class="ts-field-wrap">
+                                <input type="text" id="retrieved_timestamp" class="form-input"
+                                    placeholder="Unix epoch (e.g. 1764204739.5)"
+                                    oninput="validateTimestamp(this); clearError(this)"
+                                    onblur="validateTimestamp(this)">
+                                <div class="ts-btn-group">
+                                    <button type="button" class="ts-btn" title="Insert current time as Unix epoch"
+                                        onclick="setTimestampNow('retrieved_timestamp','unix')">Now (Unix)</button>
+                                    <button type="button" class="ts-btn" title="Insert current time as ISO 8601"
+                                        onclick="setTimestampNow('retrieved_timestamp','iso')">Now (ISO)</button>
+                                </div>
+                            </div>
+                            <span class="field-hint">When this record was created — Unix epoch preferred.</span>
+                            <span class="error-msg" id="err-retrieved_timestamp"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Source Metadata -->
+                <div class="step-panel" id="panel-2">
+                    <div class="panel-header">
+                        <div class="panel-icon icon-green">
+                            <img src="assets/globe.svg" alt="" class="panel-icon-img">
+                        </div>
+                        <div>
+                            <h2>Source Metadata</h2>
+                            <p>Where did this evaluation data come from?</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="source_name">Source Name</label>
+                            <input type="text" id="source_name" placeholder="e.g. lm-eval, HELM leaderboard"
+                                class="form-input">
+                            <span class="field-hint">Title of the source leaderboard or evaluation platform.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="source_type">Source Type <span class="required">*</span></label>
+                            <select id="source_type" class="form-select" onchange="clearError(this); validateFilled(this)">
+                                <option value="">Select type…</option>
+                                <option value="evaluation_run">evaluation_run — Direct eval run</option>
+                                <option value="documentation">documentation — From docs/papers</option>
+                            </select>
+                            <span class="error-msg" id="err-source_type"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="source_organization_name">Organization Name <span
+                                    class="required">*</span></label>
+                            <input type="text" id="source_organization_name" placeholder="e.g. EleutherAI, Hugging Face"
+                                class="form-input" oninput="clearError(this)" onblur="validateFilled(this)">
+                            <span class="error-msg" id="err-source_organization_name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="evaluator_relationship">Evaluator Relationship <span
+                                    class="required">*</span></label>
+                            <select id="evaluator_relationship" class="form-select" onchange="clearError(this); validateFilled(this)">
+                                <option value="">Select relationship…</option>
+                                <option value="first_party">first_party — Model developer ran the eval</option>
+                                <option value="third_party">third_party — Independent evaluator</option>
+                                <option value="collaborative">collaborative — Joint effort</option>
+                                <option value="other">other</option>
+                            </select>
+                            <span class="error-msg" id="err-evaluator_relationship"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="source_organization_url">Organization URL</label>
+                            <input type="url" id="source_organization_url" placeholder="https://www.eleuther.ai"
+                                class="form-input" onblur="validateUrl(this)">
+                            <span class="error-msg" id="err-source_organization_url"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="source_organization_logo_url">Organization Logo URL</label>
+                            <input type="url" id="source_organization_logo_url" placeholder="https://..."
+                                class="form-input" onblur="validateUrl(this)">
+                            <span class="error-msg" id="err-source_organization_logo_url"></span>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Additional Details <span class="optional-tag">optional key→value pairs</span></label>
+                            <div id="source-additional-details" class="kv-container"></div>
+                            <button type="button" class="btn-add-kv" onclick="addKVRow('source-additional-details')">+
+                                Add field</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Model Info -->
+                <div class="step-panel" id="panel-3">
+                    <div class="panel-header">
+                        <div class="panel-icon icon-purple">
+                            <img src="assets/model.svg" alt="" class="panel-icon-img">
+                        </div>
+                        <div>
+                            <h2>Model Information</h2>
+                            <p>Specify the model being evaluated.</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="model_name">Model Name <span class="required">*</span></label>
+                            <input type="text" id="model_name" placeholder="e.g. Kimi K2 Instruct" class="form-input"
+                                oninput="clearError(this)" onblur="validateFilled(this)">
+                            <span class="field-hint">Human-readable name as provided by the evaluation source.</span>
+                            <span class="error-msg" id="err-model_name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="model_id">Model ID <span class="required">*</span></label>
+                            <input type="text" id="model_id" placeholder="e.g. moonshotai/kimi-k2-instruct"
+                                class="form-input" oninput="clearError(this)" onblur="validateFilled(this)">
+                            <span class="field-hint">HuggingFace format: <code>org/model-name</code> or
+                                <code>provider/api/model</code></span>
+                            <span class="error-msg" id="err-model_id"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="model_developer">Developer</label>
+                            <input type="text" id="model_developer" placeholder="e.g. moonshotai, OpenAI, Meta"
+                                class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="inference_platform">Inference Platform</label>
+                            <input type="text" id="inference_platform"
+                                placeholder="e.g. HuggingFace, Together AI, Bedrock" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="inference_engine_name">Inference Engine Name</label>
+                            <input type="text" id="inference_engine_name" placeholder="e.g. vLLM, Ollama"
+                                class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="inference_engine_version">Inference Engine Version</label>
+                            <input type="text" id="inference_engine_version" placeholder="e.g. 0.6.3"
+                                class="form-input">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Additional Details <span class="optional-tag">optional key→value pairs</span></label>
+                            <div id="model-additional-details" class="kv-container"></div>
+                            <button type="button" class="btn-add-kv" onclick="addKVRow('model-additional-details')">+
+                                Add field</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Eval Library -->
+                <div class="step-panel" id="panel-4">
+                    <div class="panel-header">
+                        <div class="panel-icon icon-red">
+                            <img src="assets/library.svg" alt="" class="panel-icon-img">
+                        </div>
+                        <div>
+                            <h2>Evaluation Library</h2>
+                            <p>One or more frameworks used to run the evaluations.</p>
+                        </div>
+                    </div>
+
+                    <div id="library-entries-container"></div>
+
+                    <button type="button" class="btn-add-result" onclick="addLibraryEntry()" style="margin-bottom:0;">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
+                        </svg>
+                        Add Another Library
+                    </button>
+                </div>
+
+                <!-- STEP 5: Evaluation Results -->
+                <div class="step-panel" id="panel-5">
+                    <div class="panel-header">
+                        <div class="panel-icon icon-yellow">
+                            <img src="assets/bargraph.svg" alt="" class="panel-icon-img">
+                        </div>
+                        <div>
+                            <h2>Evaluation Results</h2>
+                            <p>Add one or more evaluation metric results.</p>
+                        </div>
+                    </div>
+
+                    <div id="results-container"></div>
+                    <button type="button" class="btn-add-result" onclick="addResult()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
+                        </svg>
+                        Add Evaluation Result
+                    </button>
+
+                    <!-- Optional: Detailed Evaluation Results -->
+                    <div class="subsection-divider">
+                        <h3 class="subsection-title">Detailed Evaluation Results <span
+                                class="optional-tag">optional</span></h3>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="detailed_format">Format</label>
+                            <select id="detailed_format" class="form-select">
+                                <option value="">None</option>
+                                <option value="jsonl">jsonl</option>
+                                <option value="json">json</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailed_file_path">File Path</label>
+                            <input type="text" id="detailed_file_path" placeholder="e.g. detailed_results/abc123.jsonl"
+                                class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="detailed_hash_algorithm">Hash Algorithm</label>
+                            <select id="detailed_hash_algorithm" class="form-select">
+                                <option value="">None</option>
+                                <option value="sha256">sha256</option>
+                                <option value="md5">md5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailed_checksum">Checksum</label>
+                            <input type="text" id="detailed_checksum" placeholder="e.g. a1b2c3d4..." class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="detailed_total_rows">Total Rows</label>
+                            <input type="number" id="detailed_total_rows" placeholder="e.g. 12032" class="form-input"
+                                min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 6: Review & Download -->
+                <div class="step-panel" id="panel-6">
+                    <div class="panel-header">
+                        <div class="panel-icon icon-cyan">
+                            <img src="assets/json.svg" alt="" class="panel-icon-img">
+                        </div>
+                        <div>
+                            <h2>Review & Download</h2>
+                            <p>Check your JSON before downloading.</p>
+                        </div>
+                    </div>
+
+                    <!-- Validation Status -->
+                    <div id="validation-status" class="validation-box"></div>
+
+                    <!-- JSON Preview -->
+                    <div class="preview-window">
+                        <div class="preview-titlebar">
+                            <div class="window-dots">
+                                <span class="dot dot-red"></span>
+                                <span class="dot dot-yellow"></span>
+                                <span class="dot dot-green"></span>
+                            </div>
+                            <span class="preview-filename" id="preview-filename">generating…</span>
+                            <button class="copy-btn" onclick="copyJSON()" title="Copy JSON">
+                                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+                        <pre class="preview-code" id="json-preview"></pre>
+                    </div>
+
+                    <div class="download-actions">
+                        <button class="btn-download" id="download-btn" onclick="downloadJSON()">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download JSON
+                        </button>
+                        <button class="btn-reset" onclick="resetForm()">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            Start Over
+                        </button>
+                    </div>
+
+                    <div class="submit-hint">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4m0-4h.01" />
+                        </svg>
+                        After downloading, submit your file to the <a
+                            href="https://huggingface.co/datasets/evaleval/EEE_datastore" target="_blank">EEE
+                            HuggingFace Dataset</a> or via a <a href="https://github.com/evaleval/every_eval_ever"
+                            target="_blank">GitHub Pull Request</a>.
+                    </div>
+                </div>
+
+            </div><!-- /.wizard-body -->
+
+            <!-- Navigation Buttons -->
+            <div class="wizard-nav">
+                <button class="btn-nav btn-prev" id="btn-prev" onclick="prevStep()" disabled>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Previous
+                </button>
+                <div class="step-counter" id="step-counter">Step 1 of 6</div>
+                <button class="btn-nav btn-next" id="btn-next" onclick="nextStep()">
+                    Next
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="assets/logo-square.png" alt="EvalEval Logo" class="footer-logo">
+                <span class="footer-title">Every Eval Ever</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://evalevalai.com" target="_blank">EvalEval Coalition</a>
+                <a href="https://huggingface.co/datasets/evaleval/EEE_datastore" target="_blank">HuggingFace Dataset</a>
+                <a href="https://github.com/evaleval/every_eval_ever" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

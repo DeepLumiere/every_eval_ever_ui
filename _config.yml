@@ -1,0 +1,16 @@
+# GitHub Pages configuration for Every Eval Ever submission form
+# This site is 100% static — no Jekyll processing needed
+title: "Every Eval Ever — Submit Evaluation"
+description: "A guided form to submit AI evaluation results in the standardized EEE schema format."
+
+# Tell Jekyll not to process any files
+include:
+  - assets/
+
+exclude:
+  - "*.md"
+  - eval.schema.json
+
+# Optional: If you're hosting at a subpath (e.g. username.github.io/repo-name)
+# uncomment and set the baseurl:
+# baseurl: "/eval_schema_ui"
